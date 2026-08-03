@@ -1,0 +1,22 @@
+{
+  "name": "Pastoreiem — Referências",
+  "short_name": "Pastoreio",
+  "description": "Livro, referências cruzadas, publicações e cartas para consulta pessoal.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5efe3",
+  "theme_color": "#526b62",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

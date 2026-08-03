@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#526b62" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Pastoreio" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="assets/icon-180.png" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>Pastoreiem - consulta integrada</title>
+  </head>
+  <body class="dark-auto">
+    <div class="app">
+      <header class="topbar">
+        <button class="iconbtn" id="menuBtn" aria-label="Abrir índice">
+          ☰
+        </button>
+        <div class="brand">
+          <img src="assets/icon-192.png" alt="" />
+          <div>
+            <b>Pastoreiem - consulta integrada</b
+            ><small>Livro, publicações, caderno e cartas</small>
+          </div>
+        </div>
+        <button
+          class="iconbtn"
+          id="fontBtn"
+          aria-label="Alterar tamanho da fonte"
+        >
+          Aa
+        </button>
+      </header>
+
+      <main class="shell">
+        <section class="hero" id="hero">
+          <div>
+            <h1>Pastoreiem o rebanho de Deus</h1>
+            <p>
+              Livro-base de setembro de 2025 com referências citadas, caderno de
+              estudo e 687 correspondências históricas.
+            </p>
+          </div>
+          <img class="cover" src="assets/cover.webp" alt="Capa do livro" />
+        </section>
+
+        <div class="notice">
+          <b>Referência principal:</b> o livro-base de setembro de 2025.
+          Materiais históricos e auxiliares ajudam na pesquisa, mas não
+          substituem a orientação atual. Conteúdo confidencial: mantenha este
+          recurso em uso pessoal e privado.
+        </div>
+
+        <div class="searchbox">
+          <input
+            id="search"
+            type="search"
+            placeholder="Buscar assunto, publicação, formulário ou carta..."
+          />
+          <select id="searchScope" aria-label="Área da busca">
+            <option value="all">Tudo</option>
+            <option value="book">Livro</option>
+            <option value="cited">Referências citadas</option>
+            <option value="refs">Caderno de estudo</option>
+            <option value="letters">Cartas</option>
+          </select>
+        </div>
+
+        <nav class="tabs" aria-label="Seções">
+          <button class="tab active" data-view="home">Início</button>
+          <button class="tab" data-view="book">Livro</button>
+          <button class="tab" data-view="cited">Referências citadas</button>
+          <button class="tab" data-view="refs">Caderno</button>
+          <button class="tab" data-view="letters">Cartas</button>
+        </nav>
+
+        <section id="searchView" class="section-view">
+          <div class="reader-head">
+            <div>
+              <h2>Resultados da busca</h2>
+              <p id="searchSummary"></p>
+            </div>
+          </div>
+          <div id="searchResults"></div>
+        </section>
+
+        <section id="homeView" class="section-view active">
+          <div class="dashboard" id="stats"></div>
+          <h2>Índice do livro</h2>
+          <div class="indexgrid" id="homeIndex"></div>
+        </section>
+
+        <section id="bookView" class="section-view">
+          <div id="reader"></div>
+        </section>
+
+        <section id="citedView" class="section-view">
+          <div class="reader-head">
+            <div>
+              <h2>Referências citadas no livro</h2>
+              <p>
+                Publicações, artigos, documentos e formulários ligados às
+                páginas e aos parágrafos em que aparecem.
+              </p>
+            </div>
+            <div class="reader-tools">
+              <a
+                class="pdfbtn"
+                href="documentos/Indice_Cruzado_Referencias_Citadas.pdf"
+                >Abrir índice em PDF</a
+              >
+            </div>
+          </div>
+          <div class="filterbar">
+            <select id="citedTypeFilter" aria-label="Filtrar por tipo">
+              <option value="">Todos os tipos</option>
+            </select>
+            <select id="citedChapterFilter" aria-label="Filtrar por capítulo">
+              <option value="">Todos os capítulos</option>
+            </select>
+            <button class="tab" id="clearCitedFilters">Limpar filtros</button>
+          </div>
+          <p class="result-count" id="citedSummary"></p>
+          <div class="cited-grid" id="citedGrid"></div>
+        </section>
+
+        <section id="refsView" class="section-view">
+          <div class="reader-head">
+            <div>
+              <h2>Caderno de estudo</h2>
+              <p>
+                Etimologias, Estudo Perspicaz, livros e Perguntas dos Leitores,
+                organizados conforme a ordem do livro-base.
+              </p>
+            </div>
+            <div class="reader-tools">
+              <a class="pdfbtn" href="documentos/Caderno_STFG_Referencias.pdf"
+                >Abrir Caderno em PDF</a
+              >
+            </div>
+          </div>
+          <div class="refs-grid" id="refsGrid"></div>
+        </section>
+
+        <section id="lettersView" class="section-view">
+          <div class="reader-head">
+            <div>
+              <h2>Cartas e documentos</h2>
+              <p>687 itens, de 1976 a 2020, com texto pesquisável.</p>
+            </div>
+          </div>
+          <div class="letters-toolbar">
+            <select id="yearFilter">
+              <option value="">Todos os anos</option>
+            </select>
+            <button class="tab" id="clearLetterFilter">Limpar filtro</button>
+          </div>
+          <div class="letters-grid" id="lettersGrid"></div>
+          <div id="lettersMore" class="empty"></div>
+        </section>
+
+        <div class="footer">
+          Recurso de consulta pessoal. Não publique o pacote em endereço aberto.
+        </div>
+      </main>
+    </div>
+
+    <aside class="drawer" id="drawer">
+      <button class="iconbtn" id="closeDrawer">✕</button>
+      <h2>Índice</h2>
+      <div id="drawerIndex"></div>
+      <hr />
+      <a href="documentos/Pastoreiem_o_Rebanho_de_Deus_2025.pdf"
+        >Abrir PDF do livro</a
+      >
+      <a href="documentos/Indice_Cruzado_Referencias_Citadas.pdf"
+        >Abrir índice de referências citadas</a
+      >
+      <a href="documentos/Caderno_STFG_Referencias.pdf">Abrir PDF do caderno</a>
+      <a href="documentos/Pastoreio_Caderno_e_Cartas.pdf"
+        >Abrir Caderno e cartas</a
+      >
+    </aside>
+    <div class="backdrop" id="backdrop"></div>
+
+    <div class="modal" id="letterModal">
+      <div class="modalbox">
+        <div class="modalhead">
+          <div class="meta">
+            <b id="modalTitle"></b><small id="modalMeta"></small>
+          </div>
+          <button class="iconbtn" id="closeModal">✕</button>
+        </div>
+        <div class="modalbody" id="modalBody"></div>
+      </div>
+    </div>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
